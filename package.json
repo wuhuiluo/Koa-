@@ -2,7 +2,7 @@
   "name": "island",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +11,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "koa": "^2.12.0",
-    "koa-router": "^8.0.8"
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^8.0.8",
+    "require-directory": "^2.1.1"
   }
 }
