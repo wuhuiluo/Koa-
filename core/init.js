@@ -6,7 +6,14 @@ class InitManager {
         // 入口方法
         InitManager.app = app
         InitManager.initLoadRouters()
+        InitManager.loadConfig()
     }
+
+    static loadConfig(path = '') {
+        const configPath = path || process.cwd() + '/config/config.js'
+        const config = require(configPath)
+        global.config = config
+      }
 
     static initLoadRouters() {
         const apiDirectory = `${process.cwd()}/app/api`

@@ -8,11 +8,13 @@ router.post('/v1/:id/classic/latest',async (ctx, next) => {
     // console.log(path)
     const query = ctx.request.query // 问号(?)后面的查询参数 
     // console.log(query)
-    const headers = ctx.request.header // 获取header
+    const header = ctx.request.header // 获取header
     // console.log(headers)
     const body = ctx.request.body // 获取body中的数据
     // console.log(body)
     const v = await new PositiveIntegerValidator().validate(ctx)
+    const id = v.get('path.id')
+    console.log(id)
     // if(true) {
     //    // 动态
     // //    const error = new HttpException('服务器垃裤了',10001,400)
@@ -22,10 +24,10 @@ router.post('/v1/:id/classic/latest',async (ctx, next) => {
     // //    error.requestUrl = `${ctx.method} ${ctx.path}`
     //    throw error
     // }
-
-    ctx.body = {
-        name: "Classic"
-    }
+    ctx.body = "success"
+    // ctx.body = {
+    //     name: "Classic"
+    // }
     //KOA 中间件
     //监听错误
     //输出一段有意义的提示信息

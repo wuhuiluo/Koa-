@@ -3,6 +3,11 @@ const catchError = async (ctx, next) => {
     try {
         await next() // 监听异常的处理 否则会出现unhandled 
     } catch (error) {
+        // 开发环境
+        // 生产环境
+        if(global.config.environment === 'dev') {
+            throw error
+        }
         // error 堆栈调用信息
         // error 简化 清晰明了的信息 给前端
         // HTTP Status Code 2xx 4xx 5xx
