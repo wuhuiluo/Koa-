@@ -3,15 +3,12 @@ const catchError = async (ctx, next) => {
     try {
         await next() // 监听异常的处理 否则会出现unhandled 
     } catch (error) {
-        // 开发环境
-        // 生产环境
-        if(global.config.environment === 'dev') {
+        const isHttpException = error instanceof HttpException
+        const isDev = global.config.environment === 'dev'
+        if(isDev && !isHttpException) {
             throw error
         }
-        // error 堆栈调用信息
-        // error 简化 清晰明了的信息 给前端
-        // HTTP Status Code 2xx 4xx 5xx
-        if(error instanceof HttpException) {
+        if(isHttpException) {
             ctx.body = {
                 msg: error.msg,
                 error_code: error.errorCode,
@@ -26,9 +23,6 @@ const catchError = async (ctx, next) => {
             }
             ctx.status = 500
         }
-        // message
-        // error_code 详细，开发者自己定义 10001
-        // request_url 当前请求的url
     }
 }
 
